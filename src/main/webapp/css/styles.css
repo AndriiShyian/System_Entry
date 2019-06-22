@@ -1,0 +1,28 @@
+body {
+	background-color: #E0FFFF;
+}
+h1{
+	margin-top:200px;
+}
+input {
+	color: white;
+	padding: 12px 22px;
+	text-align: center;
+	font-size: 12px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	text-decoration: none;
+	text-transform: uppercase;
+	background-color: white;
+	color: black;
+	border: 2px solid #008CBA;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	width: 150px;
+}
+
+input:hover {
+	background-color: #008CBA;
+	color: white;
+}

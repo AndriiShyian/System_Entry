@@ -1,0 +1,46 @@
+body{
+   background-color: #E0FFFF;
+}
+.form {
+    max-width: 400px;
+    width: 100%;
+    margin:  0 auto;
+  }
+  #password{
+    margin-top: 15px;
+  }
+   #name,#surname,#date,#subject1,#subject2,#subject3,#certificate{
+   margin-top:20px;
+   }
+  .btn,.btn2 {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .btn2{
+  width: 80%;
+  margin-left:40px;
+  }
+  #submit,#submit2{
+    background-color: mediumpurple;
+    padding: 6px 14px;
+    color:white;
+    border:1px solid blueviolet;
+    border-radius: 2px;
+  }
+  #submit2{
+  
+  }
+  #submit:hover,#submit2:hover{
+    background-color:blueviolet;
+    cursor:pointer;
+    border:1px solid blueviolet;
+  }
+#i11{
+	margin-top:100px;
+}
+#i1{
+	float:right;
+}
+h1{
+	margin-top:200px;
+}
