@@ -50,17 +50,17 @@
 										id="date"></td>
 								</tr>
 								<tr>
-									<td class="tdname">Subject1</td>
+									<td class="tdname">History</td>
 									<td><input class="form-control" type="text"
 										name="subject1" id="subject1"></td>
 								</tr>
 								<tr>
-									<td class="tdname">Subject2</td>
+									<td class="tdname">Language1</td>
 									<td><input class="form-control" type="text"
 										name="subject2" id="subject2"></td>
 								</tr>
 								<tr>
-									<td class="tdname">Subject3</td>
+									<td class="tdname">Language2</td>
 									<td><input class="form-control" type="text"
 										name="subject3" id="subject3"></td>
 								</tr>
@@ -74,13 +74,11 @@
 						<input type="submit" id="submit2" class="btn2 btn-primary"
 							name="entrance" value="Apply">
 					</div>
-
 				</div>
 			</div>
 </div>
 		</div>
 		<hr class="cleanit">
-
 		<div id="footer">
 			<div id="footer_in">
 				<p>

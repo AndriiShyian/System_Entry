@@ -23,12 +23,12 @@ public class LoginController extends HttpServlet {
 	    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         boolean resultLogin = dao.getUserByLoginAndPassword(login, password);
-        if(resultLogin == true) {
-        req.setAttribute("resultLogin", resultLogin);
+        Integer getIdOfUser = dao.getIdOfUser(login, password);
+        if(resultLogin == true && getIdOfUser > 0) {
+        req.setAttribute("getIdOfUser", getIdOfUser);
         req.getRequestDispatcher("/Faculties.jsp").forward(req, resp);
         }
         else {
