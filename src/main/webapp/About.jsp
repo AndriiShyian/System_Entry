@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="com.softserve.ita.model.User" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,10 +12,11 @@
 </style>
 </head>
 <body>
- <!-- *********  Header  ********** -->
-    
-    
-    
+    <%
+		Integer reg = (Integer) request.getAttribute("login_system_id");
+		String login_system_id = String.valueOf(reg); 
+		out.print(login_system_id);
+	%>
    <nav class="top-menu">
   <a class="navbar-logo" href=""><img src="photos/1.png" id="i2"></a>
   <ul class="menu-main">
@@ -25,8 +27,7 @@
     <li><a href="">My cabinet</a></li>
     <li><a href="">Log out</a></li>
   </ul>
-</nav>
-        
+</nav>  
         <div id="content_inner">
             
            <h3>Our institute directors</h3>

@@ -25,8 +25,8 @@
 						<div class="form-group">
 							<input class="form-control" type="text" name="login" id="login"
 								placeholder="login">
-							<input class="form-control" type="text" name="password"
-								id="password" placeholder="password"> 
+							<input class="form-control" type="password" name="password"
+							 id="password" placeholder="password"> 
 							<a href="Registration.jsp" id="i1">registration</a>
 						</div>
 						<input type="submit" id="submit" class="btn btn-primary"

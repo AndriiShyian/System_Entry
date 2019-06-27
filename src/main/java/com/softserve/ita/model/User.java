@@ -106,9 +106,11 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
+                "name=" + name +
+                ", surname='" + surname + '\'' +
+                ", date='" + date + '\'' +
+                ", idOfUser='" + idOfUser + '\'' +
+                ",idOfPoints='" + idOfPoints + '\'' +
                 '}';
     }
 

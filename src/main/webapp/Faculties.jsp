@@ -14,11 +14,11 @@
 	href="http://bootstraptema.ru/plugins/font-awesome/4-4-0/font-awesome.min.css" />
 </head>
 <body>
-<%
-		Integer reg = (Integer) request.getAttribute("getIdOfUser");
-		String login_system_id = String.valueOf(reg); 
-		out.print(login_system_id);
+	<%Integer reg = (Integer)session.getAttribute("login_system_id");
+	String login_system_id = String.valueOf(reg);
+	out.print(login_system_id); 
 	%>
+
 	<nav class="top-menu"> <a class="navbar-logo" href=""><img
 		src="photos/1.png" id="i2"></a>
 	<ul class="menu-main">
@@ -27,7 +27,7 @@
 		<li><a href="News.jsp">Last news</a></li>
 		<li><a href="ContactUs.jsp">Contact us</a></li>
 		<li><a href="">My cabinet</a></li>
-		<li><a href="">Log out</a></li>
+		<li><a href="Login.jsp">Log out</a></li>
 	</ul>
 	</nav>
 	<center>
@@ -59,7 +59,9 @@
 				</div>
 			</div>
 			</form>
-
+ <form action="web" name="form" method="POST"> 
+            <input type="hidden" name="mathform" value="math">
+            <input type="hidden" name="login_system_id" value=<%=login_system_id %>>
 			<div class="col-md-4 col-sm-6">
 				<div class="serviceBox">
 					<div class="service-icon">
@@ -80,7 +82,10 @@
 					</div>
 				</div>
 			</div>
-
+			</form>
+<form action="web" name="form" method="POST"> 
+            <input type="hidden" name="economyform" value="economy">
+            <input type="hidden" name="login_system_id" value=<%=login_system_id %>>
 			<div class="col-md-4 col-sm-6">
 				<div class="serviceBox">
 					<div class="service-icon">
@@ -101,13 +106,15 @@
 					</div>
 				</div>
 			</div>
-
+</form>
 		</div>
 		<!-- ./row -->
 	</div>
 	<div class="container">
 		<div class="row">
-
+<form action="web" name="form" method="POST"> 
+            <input type="hidden" name="chemistryform" value="chemistry">
+            <input type="hidden" name="login_system_id" value=<%=login_system_id %>>
 			<div class="col-md-4 col-sm-6">
 				<div class="serviceBox">
 					<div class="service-icon">
@@ -128,6 +135,7 @@
 					</div>
 				</div>
 			</div>
+			</form>
 
 			<div class="col-md-4 col-sm-6">
 				<div class="serviceBox">

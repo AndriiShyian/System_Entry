@@ -34,18 +34,19 @@ public class InsertingWebStudentController extends HttpServlet {
 		int language1 = Integer.parseInt(request.getParameter("language1"));
 		int language2 = Integer.parseInt(request.getParameter("language2"));
 		int certificate = Integer.parseInt(request.getParameter("certificate"));
+		int idOfInstitute = Integer.parseInt(request.getParameter("idOfInstitute"));
 		String hiddenWeb = request.getParameter("insertingWebStudent");
 		String gotId = request.getParameter("gotId");
 		Integer idOfUser = Integer.parseInt(gotId);
 		int idOfPoints = dao.getIdOfPoints() + 1;
-		int idOfPointsForEntry = dao.checkIdInUsers(name, surname, idOfUser);
-		boolean resultOfInsertingWebStudentIntoPointsForEntry = dao.insertingWebStudentIntoPointsForEntry(math,
-				language1, language2, certificate);
-			if (hiddenWeb.equals("web") && resultOfInsertingWebStudentIntoPointsForEntry == true) {
-				User user = new User(name, surname, date, idOfUser, idOfPoints);
-				request.setAttribute("user", user);
-				request.getRequestDispatcher("/InsertingInUser").forward(request, response);
-			}
+		boolean resultOfInsertingWebStudentIntoPointsForEntry = dao.insertingStudentIntoPointsForEntry(math, language1,
+				language2, certificate);
+		if (resultOfInsertingWebStudentIntoPointsForEntry == true) {
+			User user = new User(name, surname, date, idOfUser, idOfPoints);
+			request.setAttribute("user", user);
+			request.setAttribute("login_system_id", idOfUser);
+			request.setAttribute("idOfInstitute", idOfInstitute);
+			request.getRequestDispatcher("/InsertingInUser").forward(request, response);
 		}
 	}
-
+}

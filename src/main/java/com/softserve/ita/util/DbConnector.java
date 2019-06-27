@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 	public class DbConnector {
-		     String url = "jdbc:mysql://127.0.0.1:3306/entry_system";
+		     String url = "jdbc:mysql://127.0.0.1:3306/entry_system?UseSSL = false?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	         String pass = "";
 	         String user = "root";
 	         

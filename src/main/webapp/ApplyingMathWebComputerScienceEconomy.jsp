@@ -22,7 +22,9 @@
 		if (reg != null) {
 			web = reg;
 		}
-		String gotId = (String) request.getAttribute("login_system_id");
+		String gotId = (String) request.getAttribute("login_system_idd");
+		int idOfInstitute = (Integer) request.getAttribute("idOfInstitute");
+		out.print(idOfInstitute);
 		out.print(gotId);
 		out.print(web);
 	%>
@@ -42,6 +44,7 @@
 		<form action="insertingWeb" name="form" method="POST">
 			<input type="hidden" name="insertingWebStudent" value=<%=web%> />
 			<input type="hidden" name="gotId" value=<%=gotId%> />
+			<input type="hidden" name="idOfInstitute" value=<%=idOfInstitute%> />
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 text center">

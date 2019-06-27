@@ -22,8 +22,8 @@
                 <div class="form">
                     <div class="form-group">
                             <input class="form-control" type="text" name="login" id="login" placeholder = "Login">
-                            <input class="form-control" type="text" name="password" id="password" placeholder="Password">
-                         <input class="form-control" type="text" name="repeatedPassword" id="password" placeholder="Repeat password">
+                            <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                         <input class="form-control" type="password" name="repeatedPassword" id="password" placeholder="Repeat password">
                           </div>
                     <input type="submit" id="submit" class="btn btn-primary" name="entrance" value="Register me">
                 </div>

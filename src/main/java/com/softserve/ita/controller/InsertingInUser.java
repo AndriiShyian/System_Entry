@@ -32,10 +32,13 @@ public class InsertingInUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User)request.getAttribute("user");
-		boolean resultOfInsertingWebStudentIntoUser = dao.insertingWebStudentIntoUser(user.getName(), user.getSurname(), user.getDate(), user.getIdOfUser(),
+		boolean resultOfInsertingWebStudentIntoUser = dao.insertingStudentIntoUser(user.getName(), user.getSurname(), user.getDate(), user.getIdOfUser(),
 				user.getIdOfPoints());
+		int idOfInstitute =(Integer)(request.getAttribute("idOfInstitute"));
 		if(resultOfInsertingWebStudentIntoUser == true) {
-			request.getRequestDispatcher("/Faculties.jsp").forward(request, response);
+			request.setAttribute("idOfInstitute", idOfInstitute);
+			request.setAttribute("user", user);
+			request.getRequestDispatcher("/WrittingWebStudentToWebInstituteController").forward(request, response);
 		}
 	}
 

@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
 	private final static Logger logger = LoggerFactory.getLogger(DAOException.class);
@@ -106,7 +108,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean insertingWebStudentIntoUser(String name, String surname, String date, int login_system_id,
+	public boolean insertingStudentIntoUser(String name, String surname, String date, int login_system_id,
 			int points_for_entry_id) {
 		DataSource ds = dbConnect.getMySQLDataSource();
 		PreparedStatement stmt = null;
@@ -127,7 +129,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean insertingWebStudentIntoPointsForEntry(int math, int language1, int language2, int certificate) {
+	public boolean insertingStudentIntoPointsForEntry(int math, int language1, int language2, int certificate) {
 		DataSource ds = dbConnect.getMySQLDataSource();
 		PreparedStatement stmt = null;
 		String query = "INSERT INTO points_for_entry(subject1,subject2,subject3,certificate) VALUES(?,?,?,?)";
@@ -212,7 +214,8 @@ public class UserDAOImpl implements UserDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		int idOfPointsForEntry = 0;
-		String query = "SELECT points_for_entry_id from user where name='"+name+"' and surname='"+surname+"' and login_system_id='"+login_system_id+"'";
+		String query = "SELECT points_for_entry_id from user where name='" + name + "' and surname='" + surname
+				+ "' and login_system_id='" + login_system_id + "'";
 		try (Connection conn = ds.getConnection()) {
 			stmt = conn.prepareStatement(query);
 			rs = stmt.executeQuery();
@@ -220,6 +223,195 @@ public class UserDAOImpl implements UserDAO {
 				idOfPointsForEntry = rs.getInt(1);
 			}
 			return idOfPointsForEntry;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public User gettingUserByIdFromUser(int login_system_id) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String query = "SELECT * from user where login_system_id='" + login_system_id + "'";
+		try (Connection conn = ds.getConnection()) {
+			stmt = conn.prepareStatement(query);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				return new User(rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6));
+			}
+			return new User();
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public boolean insertIntoUserHasFaculty(int entrantId, int facultyId) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String query = "INSERT INTO user_has_faculties VALUES (?,?)";
+		try (Connection conn = ds.getConnection()) {
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, entrantId);
+			stmt.setInt(2, facultyId);
+			stmt.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public int findingIdOfInstitute(String faculty) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int idOfFaculty = 0;
+		String query = "SELECT id FROM faculties where faculty = ?";
+		try (Connection conn = ds.getConnection()) {
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, faculty);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				idOfFaculty = rs.getInt(1);
+			}
+			return idOfFaculty;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public boolean checkOnDulicatesInUserHasFaculty(int entrantId, int facultyId) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String query = "SELECT * FROM user_has_faculties where entrant_id = ? and faculties_id=?";
+		try (Connection conn = ds.getConnection()) {
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, entrantId);
+			stmt.setInt(2, facultyId);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public int idOfUserByIdOfLoginSystem(int login_system_id) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int idOfUser = 0;
+		String query = "SELECT id FROM user where login_system_id = ?";
+		try (Connection conn = ds.getConnection()) {
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, login_system_id);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				idOfUser = rs.getInt(1);
+			}
+			return idOfUser;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public List<Integer> idOfInstitute(int idOfUserFromUserHasFaculty) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int zero = 0;
+		String query = "SELECT faculties_id FROM user_has_faculties where entrant_id = ?";
+		try (Connection conn = ds.getConnection()) {
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, idOfUserFromUserHasFaculty);
+			rs = stmt.executeQuery();
+			List<Integer> list = new ArrayList<Integer>(rs.getRow());
+			while (rs.next()) {
+				list.add(rs.getInt(zero));
+				zero++;
+			}
+			return list;
 		} catch (SQLException e) {
 			logger.error("Error while retrieving user from database", e);
 			throw new DAOException(e.getMessage(), e);
