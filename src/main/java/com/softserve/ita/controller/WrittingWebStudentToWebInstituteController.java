@@ -30,15 +30,29 @@ public class WrittingWebStudentToWebInstituteController extends HttpServlet {
 			throws ServletException, IOException {
 		int idOfInstitute = (Integer) request.getAttribute("idOfInstitute");
 		int login_system_id = (Integer) request.getAttribute("login_system_id");
+		int sumOfSubjects = (Integer) request.getAttribute("sumOfSubjects");
+		User user = (User) request.getAttribute("user");
 		int idOfUser = dao.idOfUserByIdOfLoginSystem(login_system_id);
 		boolean checkOnDulicatesInUserHasFaculty = dao.checkOnDulicatesInUserHasFaculty(idOfUser, idOfInstitute);
 		if (checkOnDulicatesInUserHasFaculty == true) {
 			request.getRequestDispatcher("YouAreRegisteredOnThisCourse.jsp").forward(request, response);
 		} else {
-			
-			boolean insertIntoUserHasFaculty = dao.insertIntoUserHasFaculty(idOfUser, idOfInstitute);
-			if (insertIntoUserHasFaculty == true) {
-				request.getRequestDispatcher("Faculties.jsp").forward(request, response);
+			int idOfInstituteFromUserHasFaculty = dao.idOfInstitute(idOfUser);
+			if (((idOfInstituteFromUserHasFaculty == 1 || idOfInstituteFromUserHasFaculty == 2
+					|| idOfInstituteFromUserHasFaculty == 3 || idOfInstituteFromUserHasFaculty == 7)
+					&& (idOfInstitute == 4 || idOfInstitute == 5 || idOfInstitute == 6)
+					|| (idOfInstituteFromUserHasFaculty == 4) && (idOfInstitute == 1 || idOfInstitute == 2
+							|| idOfInstitute == 3 || idOfInstitute == 5 || idOfInstitute == 6 || idOfInstitute == 7) 
+					|| (idOfInstituteFromUserHasFaculty == 5 || idOfInstituteFromUserHasFaculty == 6) && (idOfInstitute == 1 || idOfInstitute == 2 || idOfInstitute == 3 || idOfInstitute == 4 || idOfInstitute == 7))) {
+				request.getRequestDispatcher("AnotherTypeOfInstitute.jsp").forward(request, response);
+			} else {
+				boolean insertIntoUserHasFaculty = dao.insertIntoUserHasFaculty(idOfUser, idOfInstitute);
+				if (insertIntoUserHasFaculty == true) {
+					request.setAttribute("user", user);
+					request.setAttribute("sumOfSubjects", sumOfSubjects);
+					request.setAttribute("idOfInstitute", idOfInstitute);
+					request.getRequestDispatcher("InsertingInFaculties").forward(request, response);
+				}
 			}
 		}
 	}

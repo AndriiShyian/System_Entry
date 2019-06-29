@@ -21,39 +21,6 @@ public class UserDAOImpl implements UserDAO {
 	private int login_system_id = 0;
 
 	@Override
-	public User getUserById(int id) throws DAOException {
-		DataSource ds = dbConnect.getMySQLDataSource();
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		String query = "SELECT * FROM login_system WHERE id = ?";
-		try (Connection conn = ds.getConnection()) {
-			stmt = conn.prepareStatement(query);
-			stmt.setInt(1, id);
-			rs = stmt.executeQuery();
-
-			if (rs.next()) {
-				return new User(rs.getInt(1), rs.getString(2), rs.getString(3));
-			} else
-				return new User();
-
-		} catch (SQLException e) {
-			logger.error("Error while retrieving user from database", e);
-			throw new DAOException(e.getMessage(), e);
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				}
-			} catch (SQLException e) {
-				logger.error("Error while RS and PreparedStatement close");
-			}
-		}
-	}
-
-	@Override
 	public boolean getUserByLoginAndPassword(String login, String password) throws DAOException {
 		DataSource ds = dbConnect.getMySQLDataSource();
 		PreparedStatement stmt = null;
@@ -112,7 +79,7 @@ public class UserDAOImpl implements UserDAO {
 			int points_for_entry_id) {
 		DataSource ds = dbConnect.getMySQLDataSource();
 		PreparedStatement stmt = null;
-		String query = "INSERT INTO user(name,surname,date_of_birth,login_system_id,points_for_entry_id) VALUES(?,?,?,?,?)";
+		String query = "INSERT INTO entrant(name,surname,date_of_birth,login_system_id,points_for_entry_id) VALUES(?,?,?,?,?)";
 		try (Connection conn = ds.getConnection()) {
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, name);
@@ -214,7 +181,7 @@ public class UserDAOImpl implements UserDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		int idOfPointsForEntry = 0;
-		String query = "SELECT points_for_entry_id from user where name='" + name + "' and surname='" + surname
+		String query = "SELECT points_for_entry_id from entrant where name='" + name + "' and surname='" + surname
 				+ "' and login_system_id='" + login_system_id + "'";
 		try (Connection conn = ds.getConnection()) {
 			stmt = conn.prepareStatement(query);
@@ -245,7 +212,7 @@ public class UserDAOImpl implements UserDAO {
 		DataSource ds = dbConnect.getMySQLDataSource();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String query = "SELECT * from user where login_system_id='" + login_system_id + "'";
+		String query = "SELECT * from entrant where login_system_id='" + login_system_id + "'";
 		try (Connection conn = ds.getConnection()) {
 			stmt = conn.prepareStatement(query);
 			rs = stmt.executeQuery();
@@ -275,7 +242,7 @@ public class UserDAOImpl implements UserDAO {
 		DataSource ds = dbConnect.getMySQLDataSource();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String query = "INSERT INTO user_has_faculties VALUES (?,?)";
+		String query = "INSERT INTO entrant_has_faculties VALUES (?,?)";
 		try (Connection conn = ds.getConnection()) {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, entrantId);
@@ -336,7 +303,7 @@ public class UserDAOImpl implements UserDAO {
 		DataSource ds = dbConnect.getMySQLDataSource();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String query = "SELECT * FROM user_has_faculties where entrant_id = ? and faculties_id=?";
+		String query = "SELECT * FROM entrant_has_faculties where entrant_id = ? and faculties_id=?";
 		try (Connection conn = ds.getConnection()) {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, entrantId);
@@ -369,7 +336,7 @@ public class UserDAOImpl implements UserDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		int idOfUser = 0;
-		String query = "SELECT id FROM user where login_system_id = ?";
+		String query = "SELECT id FROM entrant where login_system_id = ?";
 		try (Connection conn = ds.getConnection()) {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, login_system_id);
@@ -396,22 +363,86 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<Integer> idOfInstitute(int idOfUserFromUserHasFaculty) {
+	public int idOfInstitute(int idOfEntrantFromEntrantHasFaculty) {
 		DataSource ds = dbConnect.getMySQLDataSource();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		int zero = 0;
-		String query = "SELECT faculties_id FROM user_has_faculties where entrant_id = ?";
+		String query = "SELECT faculties_id FROM entrant_has_faculties where entrant_id = ?";
 		try (Connection conn = ds.getConnection()) {
 			stmt = conn.prepareStatement(query);
-			stmt.setInt(1, idOfUserFromUserHasFaculty);
+			stmt.setInt(1, idOfEntrantFromEntrantHasFaculty);
 			rs = stmt.executeQuery();
-			List<Integer> list = new ArrayList<Integer>(rs.getRow());
-			while (rs.next()) {
-				list.add(rs.getInt(zero));
-				zero++;
+
+			if (rs.next()) {
+				zero = rs.getInt(1);
 			}
-			return list;
+			return zero;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public boolean insertingoInResult(double points, int entrantId, int entrantLoginSystemId,
+			int entrant_points_for_entry_id, int facultiesId) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String query = "INSERT INTO results(points, Entrant_Id, Entrant_login_system_id, Entrant_points_for_entry_id, faculties_Id) VALUES(?,?,?,?,?)";
+		try (Connection conn = ds.getConnection()) {
+			stmt = conn.prepareStatement(query);
+			stmt.setDouble(1, points);
+			stmt.setInt(2, entrantId);
+			stmt.setInt(3, entrantLoginSystemId);
+			stmt.setInt(4, entrant_points_for_entry_id);
+			stmt.setInt(5, facultiesId);
+			stmt.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public int findPointsInResults(int entrant_login_system_id) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String query = "SELECT points from results where entrant_login_system_id = ?";
+		try (Connection conn = ds.getConnection()) {
+			stmt = conn.prepareStatement(query);
+			stmt.setDouble(1, entrant_login_system_id);
+			rs = stmt.executeQuery();
+			int points = 0;
+			if(rs.next()) {
+				 points = rs.getInt(1);
+			}
+			return points;
 		} catch (SQLException e) {
 			logger.error("Error while retrieving user from database", e);
 			throw new DAOException(e.getMessage(), e);

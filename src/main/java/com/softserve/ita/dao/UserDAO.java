@@ -5,8 +5,7 @@ import java.util.List;
 import com.softserve.ita.model.User;
 
 public interface UserDAO {
-	User getUserById(int id);
-
+	
 	boolean getUserByLoginAndPassword(String login, String password);
 
 	boolean registerUser(String login, String password, String repeatedPassword);
@@ -32,5 +31,10 @@ public interface UserDAO {
 
 	int idOfUserByIdOfLoginSystem(int login_system_id);
 	
-	List idOfInstitute(int idOfUserFromUserHasFaculty);
+	int idOfInstitute(int idOfUserFromUserHasFaculty);
+	
+	boolean insertingoInResult(double points, int entrantId, int entrantLoginSystemId, int entrant_points_for_entry_id, int facultiesId);
+	
+	int findPointsInResults(int entrant_login_system_id);
+	
 }

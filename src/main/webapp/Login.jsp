@@ -17,7 +17,7 @@
 	<center>
 		<h1>Login</h1>
 	</center>
-	<form action="login" name="form" method="POST">
+	<form action="login" name="form" method="POST" onsubmit="return validate()">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text center">
@@ -26,7 +26,7 @@
 							<input class="form-control" type="text" name="login" id="login"
 								placeholder="login">
 							<input class="form-control" type="password" name="password"
-							 id="password" placeholder="password"> 
+							 id="password" placeholder="password">
 							<a href="Registration.jsp" id="i1">registration</a>
 						</div>
 						<input type="submit" id="submit" class="btn btn-primary"
@@ -36,6 +36,8 @@
 			</div>
 		</div>
 	</form>
-
+<script type="text/javascript">
+    <%@include file='scripts/scripts.js'%>
+</script>
 </body>
 </html>

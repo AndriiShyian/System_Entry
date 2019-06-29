@@ -136,7 +136,9 @@
 				</div>
 			</div>
 			</form>
-
+<form action="web" name="form" method="POST"> 
+            <input type="hidden" name="lawform" value="law">
+            <input type="hidden" name="login_system_id" value=<%=login_system_id %>>
 			<div class="col-md-4 col-sm-6">
 				<div class="serviceBox">
 					<div class="service-icon">
@@ -157,7 +159,10 @@
 					</div>
 				</div>
 			</div>
-
+</form>
+<form action="web" name="form" method="POST"> 
+            <input type="hidden" name="foreignlangform" value="foreignlang">
+            <input type="hidden" name="login_system_id" value=<%=login_system_id %>>
 			<div class="col-md-4 col-sm-6">
 				<div class="serviceBox">
 					<div class="service-icon">
@@ -168,7 +173,7 @@
 							<a href="#">Foreign language institute</a>
 						</h3>
 						<p>Students are taught in four departments (English, German,
-							French and Chinese). Faculty programme provides study of two
+							French and Chinese). Faculty program provides study of two
 							foreign languages (English, German, French, or Spanish, Chinese -
 							at student's option), and a third foreign language (German,
 							French, Spanish, Italian, Greek, Chinese)-optional.</p>
@@ -178,7 +183,7 @@
 					</div>
 				</div>
 			</div>
-
+</form>
 		</div>
 		<!-- ./row -->
 	</div>
@@ -188,7 +193,9 @@
 
 	<div class="container">
 		<div class="row">
-
+<form action="web" name="form" method="POST"> 
+            <input type="hidden" name="computerscienceform" value="computerscience">
+            <input type="hidden" name="login_system_id" value=<%=login_system_id %>>
 			<div class="col-md-4 col-sm-6">
 				<div class="serviceBox">
 					<div class="service-icon">
@@ -211,6 +218,7 @@
 					</div>
 				</div>
 			</div>
+		</form>
 		</div>
 		<!-- ./row -->
 	</div>

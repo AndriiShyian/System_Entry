@@ -14,6 +14,18 @@
 	href="http://bootstraptema.ru/plugins/font-awesome/4-4-0/font-awesome.min.css" />
 </head>
 <body>
+<%
+		String web = "";
+		String reg = (String) request.getAttribute("webform");
+		if (reg != null) {
+			web = reg;
+		}
+		String gotId = (String) request.getAttribute("login_system_idd");
+		int idOfInstitute = (Integer) request.getAttribute("idOfInstitute");
+		out.print(idOfInstitute);
+		out.print(gotId);
+		out.print(web);
+	%>
 	<nav class="top-menu"> <a class="navbar-logo" href=""><img
 		src="photos/1.png" id="i2"></a>
 	<ul class="menu-main">

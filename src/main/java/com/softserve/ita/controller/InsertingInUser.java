@@ -32,12 +32,14 @@ public class InsertingInUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User)request.getAttribute("user");
+		int sumOfSubjects = (Integer)request.getAttribute("sumOfSubjects");
 		boolean resultOfInsertingWebStudentIntoUser = dao.insertingStudentIntoUser(user.getName(), user.getSurname(), user.getDate(), user.getIdOfUser(),
 				user.getIdOfPoints());
 		int idOfInstitute =(Integer)(request.getAttribute("idOfInstitute"));
 		if(resultOfInsertingWebStudentIntoUser == true) {
 			request.setAttribute("idOfInstitute", idOfInstitute);
 			request.setAttribute("user", user);
+			request.setAttribute("sumOfSubjects", sumOfSubjects);
 			request.getRequestDispatcher("/WrittingWebStudentToWebInstituteController").forward(request, response);
 		}
 	}

@@ -27,7 +27,7 @@ public class LoginController extends HttpServlet {
         String password = req.getParameter("password");
         boolean resultLogin = dao.getUserByLoginAndPassword(login, password);
         Integer getIdOfUser = dao.getIdOfUser(login, password);
-        if(resultLogin == true && getIdOfUser > 0) {
+        if(resultLogin == true && getIdOfUser > 0 ) {
         req.setAttribute("login_system_id", getIdOfUser);
         req.getSession().setAttribute("login_system_id", getIdOfUser);
         req.getRequestDispatcher("/Faculties.jsp").forward(req, resp);

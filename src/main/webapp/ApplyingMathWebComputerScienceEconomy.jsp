@@ -24,9 +24,7 @@
 		}
 		String gotId = (String) request.getAttribute("login_system_idd");
 		int idOfInstitute = (Integer) request.getAttribute("idOfInstitute");
-		out.print(idOfInstitute);
-		out.print(gotId);
-		out.print(web);
+		
 	%>
 	<nav class="top-menu"> <a class="navbar-logo" href=""><img
 		src="photos/1.png" id="i2"></a>
@@ -41,7 +39,7 @@
 	</nav>
 	<center>
 		<h1>Applying form</h1>
-		<form action="insertingWeb" name="form" method="POST">
+		<form action="insertingWeb" name="form" method="POST" onsubmit="return validate()">
 			<input type="hidden" name="insertingWebStudent" value=<%=web%> />
 			<input type="hidden" name="gotId" value=<%=gotId%> />
 			<input type="hidden" name="idOfInstitute" value=<%=idOfInstitute%> />
@@ -64,23 +62,23 @@
 										</tr>
 										<tr>
 											<td class="tdname">Date</td>
-											<td><input class="form-control" type="text" name="date"
+											<td><input class="form-control" type="date" name="date"
 												id="date"></td>
 										</tr>
 										<tr>
-											<td class="tdname">Math</td>
-											<td><input class="form-control" type="text" name="math"
-												id="math"></td>
+											<td class="tdname">Subject 1</td>
+											<td><input class="form-control" type="text" name="subject1"
+												id="subject1"></td>
 										</tr>
 										<tr>
-											<td class="tdname">Language1</td>
+											<td class="tdname">Subject 2</td>
 											<td><input class="form-control" type="text"
-												name="language1" id="language1"></td>
+												name="subject2" id="subject2"></td>
 										</tr>
 										<tr>
-											<td class="tdname">Language2</td>
+											<td class="tdname">Subject 3</td>
 											<td><input class="form-control" type="text"
-												name="language2" id="language2"></td>
+												name="subject3" id="subject3"></td>
 										</tr>
 										<tr>
 											<td class="tdname">Cerficate</td>
@@ -111,5 +109,8 @@
 			</div>
 		</div>
 	</center>
+	<script type="text/javascript">
+    <%@include file='scripts/scriptApply.js'%>
+</script>
 </body>
 </html>
