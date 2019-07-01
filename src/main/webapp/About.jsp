@@ -14,8 +14,7 @@
 <body>
     <%
 		Integer reg = (Integer) request.getAttribute("login_system_id");
-		String login_system_id = String.valueOf(reg); 
-		out.print(login_system_id);
+		String login_system_id = String.valueOf(reg);
 	%>
    <nav class="top-menu">
   <a class="navbar-logo" href=""><img src="photos/1.png" id="i2"></a>

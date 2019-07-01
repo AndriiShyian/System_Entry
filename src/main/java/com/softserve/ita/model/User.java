@@ -6,23 +6,55 @@ import java.util.Objects;
  * POJO(Java Bean)
  */
 public class User {
-    private int id;
-    private String login;
-    private String password;
-    private String name;
-    private String date;
-    private int idOfUser;
-    private int idOfPoints;
-    private String typeOfUser;
-    private String surname;
-    private double points;
-    private String faculty;
+	private int id;
+	private String login;
+	private String password;
+	private String name;
+	private String date;
+	private int idOfUser;
+	private int idOfPoints;
+	private String typeOfUser;
+	private String surname;
+	private double points;
+	private String faculty;
+	private double subject1;
+	private double subject2;
+	private double subject3;
+	private double certificate;
 
-    public User(){
+	public double getSubject1() {
+		return subject1;
+	}
 
-    }
+	public void setSubject1(int subject1) {
+		this.subject1 = subject1;
+	}
 
-    public double getPoints() {
+	public double getSubject2() {
+		return subject2;
+	}
+
+	public void setSubject2(int subject2) {
+		this.subject2 = subject2;
+	}
+
+	public double getSubject3() {
+		return subject3;
+	}
+
+	public void setSubject3(int subject3) {
+		this.subject3 = subject3;
+	}
+
+	public double getCertificate() {
+		return certificate;
+	}
+
+	public void setCertificate(int certificate) {
+		this.certificate = certificate;
+	}
+
+	public double getPoints() {
 		return points;
 	}
 
@@ -38,41 +70,65 @@ public class User {
 		this.faculty = faculty;
 	}
 
+	public User() {
+
+	}
+
+	public User(int id, double subject1, double subject2, double subject3, double certificate) {
+		this.id = id;
+		this.subject1 = subject1;
+		this.subject2 = subject2;
+		this.subject3 = subject3;
+		this.certificate = certificate;
+
+	}
+
+	public User(int id, String name, String surname, String date, int idOfUser, int idOfPoints) {
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.date = date;
+		this.idOfUser = idOfUser;
+		this.idOfPoints = idOfPoints;
+	}
+
 	public User(int id, String login, String password) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-    }
-    public User(int id, String login, String password, String typeOfUser) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.typeOfUser = typeOfUser;
-    }
+		this.id = id;
+		this.login = login;
+		this.password = password;
+	}
+
+	public User(int id, String login, String password, String typeOfUser) {
+		this.id = id;
+		this.login = login;
+		this.password = password;
+		this.typeOfUser = typeOfUser;
+	}
 
 	public User(String name, String surname, String date, int idOfUser, int idOfPoints) {
-    	this.name = name;
-    	this.surname = surname;
-    	this.date = date;
-    	this.idOfUser = idOfUser;
-    	this.idOfPoints = idOfPoints;
-    }
+		this.name = name;
+		this.surname = surname;
+		this.date = date;
+		this.idOfUser = idOfUser;
+		this.idOfPoints = idOfPoints;
+	}
+
 	public User(String name, String surname, double points, String faculty) {
 		this.name = name;
 		this.surname = surname;
 		this.points = points;
 		this.faculty = faculty;
 	}
-	
-	 public String getTypeOfUser() {
-			return typeOfUser;
-		}
 
-		public void setTypeOfUser(String typeOfUser) {
-			this.typeOfUser = typeOfUser;
-		}
+	public String getTypeOfUser() {
+		return typeOfUser;
+	}
 
-    public int getId() {
+	public void setTypeOfUser(String typeOfUser) {
+		this.typeOfUser = typeOfUser;
+	}
+
+	public int getId() {
 		return id;
 	}
 
@@ -121,50 +177,44 @@ public class User {
 	}
 
 	public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
+		this.login = login;
+		this.password = password;
+	}
 
-    public String getLogin() {
-        return login;
-    }
+	public String getLogin() {
+		return login;
+	}
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
+	@Override
+	public String toString() {
+		return "User{" + "name=" + name + ", surname='" + surname + '\'' + ", date='" + date + '\'' + ", idOfUser='"
+				+ idOfUser + '\'' + ",idOfPoints='" + idOfPoints + '\'' + '}';
+	}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name=" + name +
-                ", surname='" + surname + '\'' +
-                ", date='" + date + '\'' +
-                ", idOfUser='" + idOfUser + '\'' +
-                ",idOfPoints='" + idOfPoints + '\'' +
-                '}';
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		User user = (User) o;
+		return id == user.id && Objects.equals(login, user.login) && Objects.equals(password, user.password);
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id &&
-                Objects.equals(login, user.login) &&
-                Objects.equals(password, user.password);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, login, password);
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, login, password);
+	}
 }

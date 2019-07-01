@@ -26,6 +26,12 @@
 		<form action="AllFromLogin" name="form" method="post">
 	<input type="submit" id="input" value="Show all from login_system">
 	</form>
+	<form action="AllFromEntrant" name="form" method="post">
+	<input type="submit" id="input" value="Show all from entrant">
+	</form>
+	<form action="AllFromPointsForEntry" name="form" method="post">
+	<input type="submit" id="input" value="Show all from entry points">
+	</form>
 	<form action="StudentsAppliedOnWeb" name="form" method="post">
 	<input type="submit" id="input" value="Enrants for web">
 	</form>

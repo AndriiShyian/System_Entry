@@ -28,29 +28,31 @@
 						<div class="wrapper">
 							<h2 class="color-yellow">LOCATION</h2>
 							<hr class="line">
-							<div class="intro">Lorem ipsum dolor sit amet</div>
+							<div class="intro">We are always open to you</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-1-3">
 							<div class="wrap-col">
-								<i><img src="photos/1.png" id="i2"></i>
+								<i><img src="photos/location.png" id="i2"></i>
 								<h3>Location</h3>
-								<p>The wedding party will begin @ <span>14:00 P.M</span> on <span>Monday July 23, 2015</span> . Free drinks and music is on the way, no costume is needed.</p>
+								<p>You can visit us every day Monday-Friday on Carbantsia Street on the building 27</p>
 							</div>
 						</div>
 						<div class="col-1-3">
 							<div class="wrap-col">
-								<i><img src="photos/1.png" id="i2"></i>
-								<h3>Location</h3>
-								<p>Gulshan Hall, 60 Grant Ave. Carteret NJ 0708 (732) 803-01 03, (732) 806-01 04 info@emailname.com</p>
+								<i><img src="photos/phone.png" id="i2"></i>
+								<h3>Phone</h3>
+								<p>Our general phones:</p>
+								<p>1)0959595943   2)0969499354</p>
+							
 							</div>
 						</div>
 						<div class="col-1-3">
 							<div class="wrap-col">
-								<i><img src="photos/1.png" id="i2"></i>
-								<h3>Location</h3>
-								<p><span>Eevent One :</span> Event Name and Time <br><span>Eevent Two :</span> Event Name and Time <br><span>Eevent Three :</span> Event Name and Time</p>
+								<i><img src="photos/event.jpg" id="i2"></i>
+								<h3>Events</h3>
+								<p><span>Event One :</span> Math institute presentation 12/07/2019, 15:00 <br><span>Event Two :</span> Web institute presentation 13/07/2019, 15:00 <br><span>Event Three :</span> Law institute presentation 14/07/2019, 15:00</p>
 							</div>
 						</div>
 					</div>

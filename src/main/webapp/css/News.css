@@ -3,17 +3,9 @@ a{color: #ff970b;text-decoration: none;}
 
 h4	{font-size: 20px;line-height: 20px;font-family: "Vidaloka",serif;}
 
-
-/* ---------------------------------------------------------------------------- */
-/* ------------------------------------Html-Body------------------------------- */
-/* ---------------------------------------------------------------------------- */
 html, body {width:100%; padding:0; margin:0;}
 body {background: #fff;color: #3F3F3F;font: 14px/25px Arial, Helvetica, sans-serif;font-family: Vidaloka,serif;}
 
-
-/* ---------------------------------------------------------------------------- */
-/* -------------------------------------Container------------------------------ */
-/* ---------------------------------------------------------------------------- */
 /* ---content-box--- */
 .content-box {}
 .content-box .wrap-box {padding:80px 10px; position: relative;}
@@ -168,7 +160,7 @@ h2{
     color: #a5a5a5;
     font-weight: 300;
     font-size: 90%;
-    margin-top:1400px;
+    margin-top:1200px;
 
 }
 
