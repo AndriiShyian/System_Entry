@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
+
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -439,8 +441,8 @@ public class UserDAOImpl implements UserDAO {
 			stmt.setDouble(1, entrant_login_system_id);
 			rs = stmt.executeQuery();
 			int points = 0;
-			if(rs.next()) {
-				 points = rs.getInt(1);
+			if (rs.next()) {
+				points = rs.getInt(1);
 			}
 			return points;
 		} catch (SQLException e) {
@@ -453,6 +455,376 @@ public class UserDAOImpl implements UserDAO {
 				}
 				if (stmt != null) {
 					stmt.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public List<User> allFromLoginSystem() {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<User> list = new ArrayList<User>();
+		String query = "SELECT * FROM login_system";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+			}
+			return list;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public User getUserByIdFromLoginSystem(int id) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "SELECT * FROM login_system WHERE id=?";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+			}
+			return null;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public boolean updateLoginSystemId(int id, String login, String password, String typeOfUser) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "UPDATE login_system SET login=?,password=?,type_of_user=? WHERE id=?";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			ps.setString(1, login);
+			ps.setString(2, password);
+			ps.setString(3, typeOfUser);
+			ps.setInt(4, id);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public boolean deleteFromLoginSystem(int id) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "DELETE FROM login_system where id=?";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public boolean deleteFromUserHasFaculties(int idOfUser) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "DELETE FROM entrant_has_faculties where entrant_id=?";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			ps.setInt(1, idOfUser);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public boolean deleteUserFromResults(int id) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "DELETE FROM results where Entrant_id=?";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public boolean deleteUserFromEntrant(int id) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "DELETE FROM entrant where id=?";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public int idOfPoints(int id) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int idOfPoints = 0;
+		String query = "SELECT points_for_entry_id from entrant where id=?";
+		try (Connection conn = ds.getConnection()) {
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				idOfPoints = rs.getInt(1);
+			}
+			return idOfPoints;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	public boolean deleteFromPoints(int id) {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "DELETE FROM points_for_entry where id=?";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+
+	@Override
+	public List<User> seeAllEntrantsOnWeb() {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<User> list = new ArrayList<User>();
+		String query = "SELECT name, surname, points, Faculty\r\n" + 
+				"FROM entrant AS en\r\n" + 
+				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
+				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
+				"WHERE Faculty =  \"web development\"\r\n" + 
+				"GROUP BY points";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new User(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
+			}
+			return list;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+	@Override
+	public List<User> seeAllEntrantsOnMath() {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<User> list = new ArrayList<User>();
+		String query = "SELECT name, surname, points, Faculty\r\n" + 
+				"FROM entrant AS en\r\n" + 
+				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
+				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
+				"WHERE Faculty =  \"math\"\r\n" + 
+				"GROUP BY points";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new User(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
+			}
+			return list;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+	@Override
+	public List<User> seeAllEntrantsOnEconomy() {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<User> list = new ArrayList<User>();
+		String query = "SELECT name, surname, points, Faculty\r\n" + 
+				"FROM entrant AS en\r\n" + 
+				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
+				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
+				"WHERE Faculty =  \"economy\"\r\n" + 
+				"GROUP BY points";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new User(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
+			}
+			return list;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
 				}
 			} catch (SQLException e) {
 				logger.error("Error while RS and PreparedStatement close");

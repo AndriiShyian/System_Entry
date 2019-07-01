@@ -37,4 +37,30 @@ public interface UserDAO {
 	
 	int findPointsInResults(int entrant_login_system_id);
 	
+	List<User> allFromLoginSystem();
+	
+	User getUserByIdFromLoginSystem(int id);
+	
+	boolean updateLoginSystemId(int id,String login, String password, String typeOfUser);
+	
+	boolean deleteFromLoginSystem(int id);
+	
+	boolean deleteFromUserHasFaculties(int idOfUser);
+	
+	boolean deleteUserFromResults(int id);
+	
+	boolean deleteUserFromEntrant(int id);
+	
+	int idOfPoints(int id);
+	
+	boolean deleteFromPoints(int id);
+	
+	List<User> seeAllEntrantsOnWeb();
+	
+	List<User> seeAllEntrantsOnMath();
+	
+	List<User> seeAllEntrantsOnEconomy();
+	
+
+	
 }

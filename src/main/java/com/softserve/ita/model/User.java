@@ -13,25 +13,64 @@ public class User {
     private String date;
     private int idOfUser;
     private int idOfPoints;
- 
+    private String typeOfUser;
     private String surname;
+    private double points;
+    private String faculty;
 
     public User(){
 
     }
 
-    public User(int id, String login, String password) {
+    public double getPoints() {
+		return points;
+	}
+
+	public void setPoints(double points) {
+		this.points = points;
+	}
+
+	public String getFaculty() {
+		return faculty;
+	}
+
+	public void setFaculty(String faculty) {
+		this.faculty = faculty;
+	}
+
+	public User(int id, String login, String password) {
         this.id = id;
         this.login = login;
         this.password = password;
     }
-    public User(String name, String surname, String date, int idOfUser, int idOfPoints) {
+    public User(int id, String login, String password, String typeOfUser) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.typeOfUser = typeOfUser;
+    }
+
+	public User(String name, String surname, String date, int idOfUser, int idOfPoints) {
     	this.name = name;
     	this.surname = surname;
     	this.date = date;
     	this.idOfUser = idOfUser;
     	this.idOfPoints = idOfPoints;
     }
+	public User(String name, String surname, double points, String faculty) {
+		this.name = name;
+		this.surname = surname;
+		this.points = points;
+		this.faculty = faculty;
+	}
+	
+	 public String getTypeOfUser() {
+			return typeOfUser;
+		}
+
+		public void setTypeOfUser(String typeOfUser) {
+			this.typeOfUser = typeOfUser;
+		}
 
     public int getId() {
 		return id;

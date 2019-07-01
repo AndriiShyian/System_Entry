@@ -16,7 +16,6 @@
 <body>
 	<%Integer reg = (Integer)session.getAttribute("login_system_id");
 	String login_system_id = String.valueOf(reg);
-	out.print(login_system_id); 
 	%>
 
 	<nav class="top-menu"> <a class="navbar-logo" href=""><img
