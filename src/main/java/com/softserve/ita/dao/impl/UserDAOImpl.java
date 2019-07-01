@@ -831,4 +831,146 @@ public class UserDAOImpl implements UserDAO {
 			}
 		}
 	}
+	
+	@Override
+	public List<User> seeAllEntrantsOnChemistry() {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<User> list = new ArrayList<User>();
+		String query = "SELECT name, surname, points, Faculty\r\n" + 
+				"FROM entrant AS en\r\n" + 
+				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
+				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
+				"WHERE Faculty =  \"chemistry\"\r\n" + 
+				"GROUP BY points";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new User(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
+			}
+			return list;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+	@Override
+	public List<User> seeAllEntrantsOnLaw() {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<User> list = new ArrayList<User>();
+		String query = "SELECT name, surname, points, Faculty\r\n" + 
+				"FROM entrant AS en\r\n" + 
+				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
+				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
+				"WHERE Faculty =  \"law\"\r\n" + 
+				"GROUP BY points";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new User(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
+			}
+			return list;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+	
+	@Override
+	public List<User> seeAllEntrantsOnForeignLanguage() {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<User> list = new ArrayList<User>();
+		String query = "SELECT name, surname, points, Faculty\r\n" + 
+				"FROM entrant AS en\r\n" + 
+				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
+				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
+				"WHERE Faculty =  \"foreign language\"\r\n" + 
+				"GROUP BY points";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new User(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
+			}
+			return list;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
+	@Override
+	public List<User> seeAllEntrantsOnComputerScience() {
+		DataSource ds = dbConnect.getMySQLDataSource();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<User> list = new ArrayList<User>();
+		String query = "SELECT name, surname, points, Faculty\r\n" + 
+				"FROM entrant AS en\r\n" + 
+				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
+				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
+				"WHERE Faculty =  \"computer science\"\r\n" + 
+				"GROUP BY points";
+		try (Connection con = ds.getConnection()) {
+			ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new User(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
+			}
+			return list;
+		} catch (SQLException e) {
+			logger.error("Error while retrieving user from database", e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				logger.error("Error while RS and PreparedStatement close");
+			}
+		}
+	}
 }

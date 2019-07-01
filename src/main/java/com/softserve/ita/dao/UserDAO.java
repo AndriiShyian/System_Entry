@@ -61,6 +61,13 @@ public interface UserDAO {
 	
 	List<User> seeAllEntrantsOnEconomy();
 	
+	List<User> seeAllEntrantsOnChemistry();
+	
+	List<User> seeAllEntrantsOnLaw();
+	
+	List<User> seeAllEntrantsOnForeignLanguage();
+	
+	List<User> seeAllEntrantsOnComputerScience();
 
 	
 }

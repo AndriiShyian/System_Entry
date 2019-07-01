@@ -24,7 +24,7 @@ public class RegistrationController extends HttpServlet {
 	        dao = new UserDAOImpl();
 	    } @Override
 	    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+	    	
 	        String login = req.getParameter("login");
 	        String password = req.getParameter("password");
 	        String repeatedPassword = req.getParameter("repeatedPassword");

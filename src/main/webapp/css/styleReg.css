@@ -6,7 +6,7 @@ body{
     width: 100%;
     margin:  0 auto;
   }
-  #password{
+  #password, #repeatedPassword{
     margin-top: 15px;
   }
    #name,#surname,#date,#subject1,#subject2,#subject3,#certificate{
@@ -43,4 +43,23 @@ h1{
 }
 td{
 	width:50px;
+}
+.error-span, .error3-span {
+  position: absolute;
+  margin-left: 400px;
+  margin-top: -2px;
+  color: red;
+  font-size: 12px;
+  left: 0;
+}
+.error2-span{
+  position: absolute;
+  margin-left: 400px;
+  margin-top: -2px;
+  color: red;
+  font-size: 12px;
+  left: 0;
+}
+.error, .error2, .error3{
+    border:1px solid red;
 }

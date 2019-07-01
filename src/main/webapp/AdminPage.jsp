@@ -35,6 +35,18 @@
 	<form action="StudentsAppliedOnEconomy" name="form" method="post">
 	<input type="submit" id="input" value="Enrants for economy">
 	</form>
+	<form action="StudentsAppliedOnChemistry" name="form" method="post">
+	<input type="submit" id="input" value="Entrants for chemistry">
+	</form>
+	<form action="StudentsAppliedOnLaw" name="form" method="post">
+	<input type="submit" id="input" value="Entrants for law">
+	</form>
+	<form action="StudentsAppliedOnForeignLanguage" name="form" method="post">
+	<input type="submit" id="input" value="Entrants foreign language">
+	</form>
+	<form action="StudentsAppliedOnComputerScience" name="form" method="post">
+	<input type="submit" id="input" value="Entrants computer science">
+	</form>
 </center>
 	<hr class="cleanit">
 

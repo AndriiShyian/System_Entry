@@ -18,7 +18,7 @@
 			<tr>
 				<td>Name</td>
 				<td>Surname</td>
-				<td>zPoints</td>
+				<td>Points</td>
 				<td>Institute</td>
 			</tr>
 			<%

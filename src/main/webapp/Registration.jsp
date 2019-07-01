@@ -15,15 +15,18 @@
 <body>
 <center>
 <h1>Registration</h1></center>
-<form action="registration" name="form" method="POST">
+<form action="registration" name="form" method="POST" onsubmit="return validate()">
        <div class="container">
         <div class="row">
             <div class="col-md-12 text center">
                 <div class="form">
                     <div class="form-group">
                             <input class="form-control" type="text" name="login" id="login" placeholder = "Login">
+                            <span class="error-span" id="error"></span>
                             <input class="form-control" type="password" name="password" id="password" placeholder="Password">
-                         <input class="form-control" type="password" name="repeatedPassword" id="password" placeholder="Repeat password">
+                           <span class="error2-span" id="error2"></span>
+                         <input class="form-control" type="password" name="repeatedPassword" id="repeatedPassword" placeholder="Repeat password">
+                           <span class="error3-span" id="error3"></span>
                           </div>
                     <input type="submit" id="submit" class="btn btn-primary" name="entrance" value="Register me">
                 </div>
@@ -31,5 +34,8 @@
         </div>
       </div>
 </form>
+<script type="text/javascript">
+    <%@include file='scripts/scriptRegister.js'%>
+</script>
 </body>
 </html>
