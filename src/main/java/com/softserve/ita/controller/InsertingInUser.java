@@ -36,7 +36,7 @@ public class InsertingInUser extends HttpServlet {
 		boolean resultOfInsertingWebStudentIntoUser = dao.insertingStudentIntoUser(user.getName(), user.getSurname(), user.getDate(), user.getIdOfUser(),
 				user.getIdOfPoints());
 		int idOfInstitute =(Integer)(request.getAttribute("idOfInstitute"));
-		if(resultOfInsertingWebStudentIntoUser == true) {
+		if(resultOfInsertingWebStudentIntoUser) {
 			request.setAttribute("idOfInstitute", idOfInstitute);
 			request.setAttribute("user", user);
 			request.setAttribute("sumOfSubjects", sumOfSubjects);

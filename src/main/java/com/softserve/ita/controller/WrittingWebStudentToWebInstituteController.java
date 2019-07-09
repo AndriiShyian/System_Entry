@@ -34,7 +34,7 @@ public class WrittingWebStudentToWebInstituteController extends HttpServlet {
 		User user = (User) request.getAttribute("user");
 		int idOfUser = dao.idOfUserByIdOfLoginSystem(login_system_id);
 		boolean checkOnDulicatesInUserHasFaculty = dao.checkOnDulicatesInUserHasFaculty(idOfUser, idOfInstitute);
-		if (checkOnDulicatesInUserHasFaculty == true) {
+		if (checkOnDulicatesInUserHasFaculty) {
 			request.getRequestDispatcher("YouAreRegisteredOnThisCourse.jsp").forward(request, response);
 		} else {
 			int idOfInstituteFromUserHasFaculty = dao.idOfInstitute(idOfUser);
@@ -47,7 +47,7 @@ public class WrittingWebStudentToWebInstituteController extends HttpServlet {
 				request.getRequestDispatcher("AnotherTypeOfInstitute.jsp").forward(request, response);
 			} else {
 				boolean insertIntoUserHasFaculty = dao.insertIntoUserHasFaculty(idOfUser, idOfInstitute);
-				if (insertIntoUserHasFaculty == true) {
+				if (insertIntoUserHasFaculty) {
 					request.setAttribute("user", user);
 					request.setAttribute("sumOfSubjects", sumOfSubjects);
 					request.setAttribute("idOfInstitute", idOfInstitute);

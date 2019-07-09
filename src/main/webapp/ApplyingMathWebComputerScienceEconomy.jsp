@@ -61,7 +61,7 @@
 												name="surname" id="surname"></td>
 										</tr>
 										<tr>
-											<td class="tdname">Date</td>
+											<td class="tdname">Date of birth</td>
 											<td><input class="form-control" type="date" name="date"
 												id="date"></td>
 										</tr>

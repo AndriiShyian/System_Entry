@@ -110,7 +110,6 @@ public class WebController extends HttpServlet {
 			}
 			request.setAttribute("webform", receivedValue);
 			request.setAttribute("login_system_idd", login_system_idd);
-//			response.sendRedirect("ApplyingMathWebComputerScienceEconomy.jsp");
 			request.getRequestDispatcher("/ApplyingMathWebComputerScienceEconomy.jsp").forward(request, response);
 		}
 	}

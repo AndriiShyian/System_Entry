@@ -32,16 +32,13 @@ public class LoginController extends HttpServlet {
             req.getSession().setAttribute("login_system_id", getIdOfUser);
         if(!login.equals("admin")) {
         	resp.sendRedirect("Faculties.jsp");
-//        req.getRequestDispatcher("/Faculties.jsp").forward(req, resp);
         }
         else{
         	resp.sendRedirect("AdminPage.jsp");
-//        	req.getRequestDispatcher("/AdminPage.jsp").forward(req, resp);
         	}
         }
         else {
         	resp.sendRedirect("Login.jsp");
-//        	req.getRequestDispatcher("/Login.jsp").forward(req, resp);
         }
     }
 }

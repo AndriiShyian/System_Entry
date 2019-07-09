@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Villanova</title>
 <style>
    <%@include file='css/ContactUs.css' %>
 </style>
@@ -17,8 +17,7 @@
     <li><a href="About.jsp">About</a></li>
     <li><a href="News.jsp">Last news</a></li>
     <li><a href="ContactUs.jsp">Contact us</a></li>
-    <li><a href="">My cabinet</a></li>
-    <li><a href="">Log out</a></li>
+    <li><a href="Login.jsp">Log out</a></li>
   </ul>
 </nav>
 <section class="content-box boxstyle-1 box-6">
@@ -26,7 +25,7 @@
 				<div class="row wrap-box"><!--Start Box-->
 					<div class="header">
 						<div class="wrapper">
-							<h2 class="color-yellow">LOCATION</h2>
+							<h2 class="color-yellow">CONTACT US</h2>
 							<hr class="line">
 							<div class="intro">We are always open to you</div>
 						</div>

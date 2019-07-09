@@ -24,17 +24,17 @@ function validate() {
 		alert("Wrong date");
 		return false;
 	} else if (!/^\d+$/.test(subject1) || subject1 < 100 || subject1 > 200) {
-		alert("Wrong subject 1 date");
+		alert("Wrong subject 1 data");
 		return false;
 	} else if (!/^\d+$/.test(subject2) || subject2 < 100 || subject2 > 200) {
-		alert("Wrong subject 2 date");
+		alert("Wrong subject 2 data");
 		return false;
 	} else if (!/^\d+$/.test(subject3) || subject3 < 100 || subject3 > 200) {
-		alert("Wrong subject 3 date");
+		alert("Wrong subject 3 data");
 		return false;
 	} else if (!/^\d+$/.test(certificate) || certificate < 100
 			|| certificate > 200) {
-		alert("Wrong subject certificate date");
+		alert("Wrong subject certificate data");
 		return false;
 	} else if (day === null) {
 		alert("Wrong subject date");

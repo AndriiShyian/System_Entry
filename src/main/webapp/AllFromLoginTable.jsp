@@ -26,8 +26,8 @@
 		<table border='1'>
 			<tr>
 				<td>Id</td>
-				<td>Name</td>
-				<td>Surname</td>
+				<td>Login</td>
+				<td>Password</td>
 				<td>Type of User</td>
 				<td>Edit</td>
 				<td>Delete</td>

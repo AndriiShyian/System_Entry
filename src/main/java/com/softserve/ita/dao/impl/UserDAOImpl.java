@@ -737,7 +737,7 @@ public class UserDAOImpl implements UserDAO {
 				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
 				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
 				"WHERE Faculty =  \"web development\"\r\n" + 
-				"GROUP BY points";
+				"GROUP BY points DESC";
 		try (Connection con = ds.getConnection()) {
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -772,7 +772,7 @@ public class UserDAOImpl implements UserDAO {
 				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
 				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
 				"WHERE Faculty =  \"math\"\r\n" + 
-				"GROUP BY points";
+				"GROUP BY points DESC";
 		try (Connection con = ds.getConnection()) {
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -807,7 +807,7 @@ public class UserDAOImpl implements UserDAO {
 				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
 				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
 				"WHERE Faculty =  \"economy\"\r\n" + 
-				"GROUP BY points";
+				"GROUP BY points DESC";
 		try (Connection con = ds.getConnection()) {
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -843,7 +843,7 @@ public class UserDAOImpl implements UserDAO {
 				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
 				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
 				"WHERE Faculty =  \"chemistry\"\r\n" + 
-				"GROUP BY points";
+				"GROUP BY points DESC";
 		try (Connection con = ds.getConnection()) {
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -878,7 +878,7 @@ public class UserDAOImpl implements UserDAO {
 				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
 				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
 				"WHERE Faculty =  \"law\"\r\n" + 
-				"GROUP BY points";
+				"GROUP BY points DESC";
 		try (Connection con = ds.getConnection()) {
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -914,7 +914,7 @@ public class UserDAOImpl implements UserDAO {
 				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
 				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
 				"WHERE Faculty =  \"foreign language\"\r\n" + 
-				"GROUP BY points";
+				"GROUP BY points DESC";
 		try (Connection con = ds.getConnection()) {
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -949,7 +949,7 @@ public class UserDAOImpl implements UserDAO {
 				"INNER JOIN results AS re ON en.id = re.Entrant_id\r\n" + 
 				"INNER JOIN faculties fac ON re.faculties_id = fac.id\r\n" + 
 				"WHERE Faculty =  \"computer science\"\r\n" + 
-				"GROUP BY points";
+				"GROUP BY points DESC";
 		try (Connection con = ds.getConnection()) {
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();

@@ -41,7 +41,7 @@ public class InsertingWebStudentController extends HttpServlet {
 		int sumOfSubjects = subject1 + subject2 + subject3 + certificate;
 		boolean resultOfInsertingWebStudentIntoPointsForEntry = dao.insertingStudentIntoPointsForEntry(subject1, subject2,
 				subject3, certificate);
-		if (resultOfInsertingWebStudentIntoPointsForEntry == true) {
+		if (resultOfInsertingWebStudentIntoPointsForEntry) {
 			User user = new User(name, surname, date, idOfUser, idOfPoints);
 			request.setAttribute("user", user);
 			request.setAttribute("login_system_id", idOfUser);

@@ -33,7 +33,7 @@ public class InsertingInFaculties extends HttpServlet {
 		int idOfInstitute = (Integer) request.getAttribute("idOfInstitute");
 		int idOfUserByIdOfLoginSystem = dao.idOfUserByIdOfLoginSystem(user.getIdOfUser());
 		boolean insertingoInResult = dao.insertingoInResult(sumOfSubjects, idOfUserByIdOfLoginSystem, login_system_id, user.getIdOfPoints(), idOfInstitute);
-		if(insertingoInResult == true) {
+		if(insertingoInResult) {
 			request.getRequestDispatcher("Faculties.jsp").forward(request, response);	
 		}
 	

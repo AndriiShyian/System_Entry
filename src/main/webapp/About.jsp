@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Villanova</title>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <style>
    <%@include file='css/About.css' %>
@@ -23,8 +23,7 @@
     <li><a href="About.jsp">About</a></li>
     <li><a href="News.jsp">Last news</a></li>
     <li><a href="ContactUs.jsp">Contact us</a></li>
-    <li><a href="">My cabinet</a></li>
-    <li><a href="">Log out</a></li>
+    <li><a href="Login.jsp">Log out</a></li>
   </ul>
 </nav>  
         <div id="content_inner">
@@ -110,7 +109,7 @@
                 <div class="milestone4">
                     <h4 class="miles">
                         <b>6/2019</b> <br>
-                        Hiring Steffanie
+                        Unbelievable success!
                     </h4>
                     <p class="descr">More than 100000 students graduated our university. We helped more than 97% of them to find job.</p>
                 </div>
