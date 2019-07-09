@@ -30,7 +30,7 @@ public class updatingPoints extends HttpServlet {
 		Double subject3 = Double.parseDouble((String)request.getParameter("subject3"));
 		Double certificate = Double.parseDouble((String)request.getParameter("certificate"));
 		boolean updateLoginSystemId = dao.updatePoints(id, subject1, subject2, subject3, certificate);
-		if(updateLoginSystemId == true) {
+		if(updateLoginSystemId) {
 			response.sendRedirect("AdminPage.jsp");
 		}
 	}

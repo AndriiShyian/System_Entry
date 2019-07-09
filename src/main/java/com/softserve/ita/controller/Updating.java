@@ -31,7 +31,7 @@ public class Updating extends HttpServlet {
 		String password = (String)request.getParameter("password");
 		String userType = (String)request.getParameter("typeofuser");
 		boolean updateLoginSystemId = dao.updateLoginSystemId(id, login, password, userType);
-		if(updateLoginSystemId == true) {
+		if(updateLoginSystemId) {
 			response.sendRedirect("AdminPage.jsp");
 		}
 	}

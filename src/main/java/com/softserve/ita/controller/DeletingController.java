@@ -33,15 +33,15 @@ public class DeletingController extends HttpServlet {
 		int idOfEntrant = dao.idOfUserByIdOfLoginSystem(id);
 		int pointsId = dao.idOfPoints(idOfEntrant);
 		boolean deleteUserFromResults = dao.deleteUserFromResults(idOfEntrant);
-		if (deleteUserFromResults == true) {
+		if (deleteUserFromResults) {
 			boolean deleteFromUserHasFaculties = dao.deleteFromUserHasFaculties(idOfEntrant);
-			if (deleteFromUserHasFaculties == true) {
+			if (deleteFromUserHasFaculties) {
 				boolean deleteUserFromEntrant = dao.deleteUserFromEntrant(idOfEntrant);
-				if (deleteUserFromEntrant == true) {
+				if (deleteUserFromEntrant) {
 					boolean deleteFromPoints = dao.deleteFromPoints(pointsId);
-					if (deleteFromPoints == true) {
+					if (deleteFromPoints) {
 						boolean deleteFromLoginSystem = dao.deleteFromLoginSystem(id);
-						if (deleteFromLoginSystem == true) {
+						if (deleteFromLoginSystem) {
 							response.sendRedirect("AdminPage.jsp");
 						}
 					}

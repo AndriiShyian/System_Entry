@@ -29,7 +29,7 @@ public class RegistrationController extends HttpServlet {
 	        String password = req.getParameter("password");
 	        String repeatedPassword = req.getParameter("repeatedPassword");
 	        boolean registerUser = dao.registerUser(login, password, repeatedPassword);
-	        if(registerUser == true && password.equals(repeatedPassword)) {
+	        if(registerUser && password.equals(repeatedPassword)) {
 	        	resp.setContentType("text/html; charset=UTF-8");
 	        req.setAttribute("resultLogin", registerUser);
 	        req.getRequestDispatcher("/Login.jsp").forward(req, resp);

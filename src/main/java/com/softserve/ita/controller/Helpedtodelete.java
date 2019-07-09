@@ -31,7 +31,7 @@ public class Helpedtodelete extends HttpServlet {
 		   }
 		   else {
 			   boolean deleteFromLoginSystem = dao.deleteFromLoginSystem(id);
-			   if(deleteFromLoginSystem == true) {
+			   if(deleteFromLoginSystem) {
 				   request.getRequestDispatcher("AdminPage.jsp").forward(request, response);;
 			   }
 		   }

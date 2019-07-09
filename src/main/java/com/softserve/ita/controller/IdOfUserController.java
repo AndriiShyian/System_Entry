@@ -30,7 +30,7 @@ public class IdOfUserController extends HttpServlet {
 	        String login = req.getParameter("login");
 	        String password = req.getParameter("password");
 	        boolean resultLogin = dao.getUserByLoginAndPassword(login, password);
-	        if(resultLogin == true) {
+	        if(resultLogin) {
 	        req.setAttribute("resultLogin", resultLogin);
 	        req.getRequestDispatcher("/Faculties.jsp").forward(req, resp);
 	        }

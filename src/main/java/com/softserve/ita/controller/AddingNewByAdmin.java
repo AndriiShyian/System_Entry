@@ -32,7 +32,7 @@ public class AddingNewByAdmin extends HttpServlet {
 	        String repeatedPassword = req.getParameter("repeatedPassword");
 	        ArrayList<User> list = (ArrayList<User>) dao.allFromLoginSystem();
 	        boolean registerUser = dao.registerUser(login, password, repeatedPassword);
-	        if(registerUser == true && password.equals(repeatedPassword)) {
+	        if(registerUser && password.equals(repeatedPassword)) {
 	        	resp.setContentType("text/html");
 	       resp.sendRedirect("AdminPage.jsp");
 	        }

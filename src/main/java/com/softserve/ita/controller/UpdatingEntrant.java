@@ -29,7 +29,7 @@ public class UpdatingEntrant extends HttpServlet {
 		String surname = (String)request.getParameter("surname");
 		String date = (String)request.getParameter("date");
 		boolean updateLoginSystemId = dao.updateEntrant(id, name, surname, date);
-		if(updateLoginSystemId == true) {
+		if(updateLoginSystemId) {
 			response.sendRedirect("AdminPage.jsp");
 		}
 	}
